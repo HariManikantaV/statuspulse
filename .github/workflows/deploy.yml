@@ -28,9 +28,15 @@ jobs:
 
       - name: Local Deployment & Health Check
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository }}/app
+          # 1. Force the repository name to be lowercase
+          REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE_ID=ghcr.io/$REPO_LOWER/app
+          
+          # 2. Pull and Deploy
           docker pull $IMAGE_ID:latest
           docker compose up -d app
+          
+          # 3. Health Check
           echo "Waiting for health check..."
           sleep 15
           if ! curl -f http://localhost:8000/health; then
