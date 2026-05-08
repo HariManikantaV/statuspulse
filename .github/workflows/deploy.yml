@@ -1,25 +1,35 @@
-- name: Local Deployment & Health Check
+name: Deploy Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and Push
         run: |
-          # 1. Pull the new image locally
+          IMAGE_ID=ghcr.io/${{ github.repository }}/app
+          docker build . -t $IMAGE_ID:latest -t $IMAGE_ID:${{ github.sha }}
+          docker push $IMAGE_ID:latest
+          docker push $IMAGE_ID:${{ github.sha }}
+
+      - name: Local Deployment & Health Check
+        run: |
           IMAGE_ID=ghcr.io/${{ github.repository }}/app
           docker pull $IMAGE_ID:latest
-          
-          # 2. Update the stack
           docker compose up -d app
-          
-          # 3. Post-deployment health check
           echo "Waiting for health check..."
           sleep 15
           if ! curl -f http://localhost:8000/health; then
-            echo "Health check failed! Rolling back to previous stable image..."
-            # Simple rollback: pull and run the last known image if you have a backup tag
-            # For now, we exit 1 to show the failure in GitHub Actions
+            echo "Health check failed! Rolling back..."
             exit 1
           fi
-          echo "Deployment successful and healthy!"
-
-      - name: Success Notification
-        if: success()
-        run: |
-          echo "Deployment to MacBook M2 successful!"
-          # Add your Slack/Discord webhook here if you have one!
+          echo "Deployment successful!"
