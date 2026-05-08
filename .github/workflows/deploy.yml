@@ -18,7 +18,10 @@ jobs:
 
       - name: Build and Push
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository }}/app
+          # This line converts the repository name to lowercase
+          REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE_ID=ghcr.io/$REPO_LOWER/app
+          
           docker build . -t $IMAGE_ID:latest -t $IMAGE_ID:${{ github.sha }}
           docker push $IMAGE_ID:latest
           docker push $IMAGE_ID:${{ github.sha }}
