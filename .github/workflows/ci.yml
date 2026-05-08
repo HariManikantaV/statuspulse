@@ -8,38 +8,44 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Lint Python with Ruff
-        [cite_start]run: pip install ruff && ruff check . [cite: 222]
+        run: |
+          pip install ruff
+          ruff check .
 
       - name: Build Docker Image
-        [cite_start]run: docker compose build [cite: 222]
+        run: docker compose build
 
       - name: Start Full Stack
-        [cite_start]run: docker compose up -d [cite: 222]
+        run: docker compose up -d
 
       - name: Wait for Health Check
         run: |
           for i in {1..10}; do
-            if [ "$(docker inspect -f '{{.State.Health.Status}}' statuspulse-app-1)" == "healthy" ]; then exit 0; fi
+            if [ "$(docker inspect -f '{{.State.Health.Status}}' statuspulse-app-1)" == "healthy" ]; then 
+              echo "Health check passed!"
+              exit 0
+            fi
+            echo "Waiting for health check... ($i/10)"
             sleep 5
           done
-          exit 1 [cite: 224]
+          exit 1
 
       - name: Run Integration Tests
-        [cite_start]run: bash tests/test_integration.sh [cite: 224]
+        run: bash tests/test_integration.sh
 
       - name: Tear Down Stack
         if: always()
-        [cite_start]run: docker compose down [cite: 224]
+        run: docker compose down
 
       - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: integration-test-results
-          [cite_start]path: tests/ [cite: 224]
+          path: tests/
