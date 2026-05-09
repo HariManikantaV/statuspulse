@@ -50,10 +50,10 @@ We provided a `Makefile` to automate the developer workflow.
 
 | Requirement | Screenshot File | Description |
 | :--- | :--- | :--- |
-| **Image Size** | `screenshots/task1/docker_images.png` | Shows the app image is < 200MB. |
-| **Service Status** | `screenshots/task1/compose_ps.png` | Shows App, DB, and Redis are all `healthy`. |
-| **API Integrity** | `screenshots/task1/health_curl.png` | Shows the JSON response with sub-system health. |
-| **Automation** | `screenshots/task1/make_test.png` | Terminal output of the successful `make test` command. |
+| **Image Size** | `screenshots/task1/Screenshot.png` | Shows the app image is < 200MB. |
+| **Service Status** | `screenshots/task1/Screenshot.png` | Shows App, DB, and Redis are all `healthy`. |
+| **API Integrity** | `screenshots/task1/Screenshot.png` | Shows the JSON response with sub-system health. |
+| **Automation** | `screenshots/task1/Screenshot.png` | Terminal output of the successful `make test` command. |
 
 ---
 
@@ -102,8 +102,8 @@ The `tests/test_integration.sh` script is a comprehensive test runner that ensur
 | **Successful CI Runs** | [View Green Checks](https://github.com/HariManikantaV/statuspulse/actions) |
 | **Successful Deployment**| [View Deployment Logs](https://github.com/HariManikantaV/statuspulse/actions?query=workflow%3ADeploy) |
 | **Intentional Failure** | [View Blocked PR](https://github.com/HariManikantaV/statuspulse/actions) |
-| **Container Registry** | `screenshots/task2/ghcr_images.png` (Shows SHA tags) |
-| **Notifications** | `screenshots/task2/discord_notification.png` |
+| **Container Registry** | `screenshots/task2/Screenshot.png` (Shows SHA tags) |
+| **Notifications** | `screenshots/task2/Screenshot.png` |
 
 ---
 
@@ -147,12 +147,12 @@ The `scripts/deploy.sh` script handles the final mile of the CI/CD process direc
 | Requirement | Proof Link / Reference |
 | :--- | :--- |
 | **Live API Health** | [https://<your-domain>/health](https://<your-domain>/health) |
-| **Swagger UI Proof** | `screenshots/task3/docs_https.png` |
-| **TLS Verification**| `screenshots/task3/curl_vI_tls.png` (Shows valid cert) |
-| **Firewall Status** | `screenshots/task3/ufw_status.png` |
-| **SSH Hardening** | `screenshots/task3/sshd_config.png` |
-| **Successful Deploy**| `screenshots/task3/deploy_script_success.png` |
-| **Rollback Proof** | `screenshots/task3/deploy_rollback_test.png` |
+| **Swagger UI Proof** | `screenshots/task3/Screenshot.png` |
+| **TLS Verification**| `screenshots/task3/Screenshot.png` (Shows valid cert) |
+| **Firewall Status** | `screenshots/task3/Screenshot.png` |
+| **SSH Hardening** | `screenshots/task3/Screenshot.png` |
+| **Successful Deploy**| `screenshots/task3/Screenshot.png` |
+| **Rollback Proof** | `screenshots/task3/Screenshot.png` |
 
 ---
 
@@ -199,12 +199,12 @@ While Kuma monitors from the outside, our `scripts/health-monitor.sh` provides *
 | Requirement | Proof Link / Reference |
 | :--- | :--- |
 | **Public Status Page** | [View Live Status Page](https://status.yourdomain.com) |
-| **Kuma Dashboard** | `screenshots/task4/kuma_dashboard.png` (4 green monitors) |
-| **Alert Proof (Down)**| `screenshots/task4/alert_down.png` (Discord/Email) |
-| **Alert Proof (Up)** | `screenshots/task4/alert_recovery.png` (Discord/Email) |
-| **Cron Configuration**| `screenshots/task4/crontab_list.png` |
-| **Monitor Logs** | `screenshots/task4/monitor_logs.png` (Showing 1hr+ entries) |
-| **Disk Stress Test** | `screenshots/task4/disk_alert_proof.png` (Using `fallocate`) |
+| **Kuma Dashboard** | `screenshots/task4/Screenshot.png` (4 green monitors) |
+| **Alert Proof (Down)**| `screenshots/task4/Screenshot.png` (Discord/Email) |
+| **Alert Proof (Up)** | `screenshots/task4/Screenshot.png` (Discord/Email) |
+| **Cron Configuration**| `screenshots/task4/Screenshot.png` |
+| **Monitor Logs** | `screenshots/task4/Screenshot.png` (Showing 1hr+ entries) |
+| **Disk Stress Test** | `screenshots/task4/Screenshot.png` (Using `fallocate`) |
 
 ---
 
@@ -241,11 +241,11 @@ Data integrity is maintained through an automated, rotated backup strategy locat
 | Requirement | Proof Link / Reference |
 | :--- | :--- |
 | **IaC Codebase** | [View `/ansible/`](./ansible/) |
-| **Ansible Execution** | `screenshots/task5/ansible_run_success.png` |
-| **Idempotency Proof** | `screenshots/task5/ansible_idempotency.png` (Shows `changed=0`) |
-| **Backup Rotation** | `screenshots/task5/backup_rotation_proof.png` (Shows 7-day files) |
-| **Restore Verification**| `screenshots/task5/db_restore_success.png` (Data is intact) |
-| **Backup Schedule** | `screenshots/task4/crontab_list.png` (Shows `@daily` job) |
+| **Ansible Execution** | `screenshots/task5/Screenshot.png` |
+| **Idempotency Proof** | `screenshots/task5/Screenshot.png` (Shows `changed=0`) |
+| **Backup Rotation** | `screenshots/task5/Screenshot.png` (Shows 7-day files) |
+| **Restore Verification**| `screenshots/task5/Screenshot.png` (Data is intact) |
+| **Backup Schedule** | `screenshots/task4/Screenshot.png` (Shows `@daily` job) |
 
 ---
 
@@ -288,11 +288,11 @@ The Caddy reverse proxy acts as a hardened shield for the application API.
 
 | Requirement | Proof Link / Reference |
 | :--- | :--- |
-| **Vulnerability Scan** | `screenshots/task6/trivy_before_after.png` |
+| **Vulnerability Scan** | `screenshots/task6/Screenshot.png` |
 | **Security Policy** | [View `SECURITY.md`](./SECURITY.md) |
-| **Secret-Free History**| `screenshots/task6/git_log_clean.png` |
-| **Security Headers** | `screenshots/task6/curl_headers_check.png` (Shows 200 OK + Headers) |
-| **Rate Limit Proof** | `screenshots/task6/rate_limit_429.png` (Shows 429 HTTP codes) |
+| **Secret-Free History**| `screenshots/task6/Screenshot.png` |
+| **Security Headers** | `screenshots/task6/Screenshot.png` (Shows 200 OK + Headers) |
+| **Rate Limit Proof** | `screenshots/task6/Screenshot.png` (Shows 429 HTTP codes) |
 
 ---
 
